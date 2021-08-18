@@ -20,6 +20,8 @@
 
 This build of dwm does not block color emoji in the status/info bar, so you must install [libxft-bgra](https://aur.archlinux.org/packages/libxft-bgra/) from the AUR, otherwise dwm will crash upon trying to render one.
 
+After install all the dependencies:
+
 ```
 git clone https://github.com/Daerckdev/dwm
 cd dwm
