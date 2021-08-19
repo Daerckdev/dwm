@@ -178,6 +178,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_x,      tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_z,      tagmon,         {.i = +1 } },
 
+    // Screenshot (require maim)
+	{ 0,                            XK_Print,  spawn,          SHCMD("maim $HOME/Screenshots/full-screenshot-$(date '+%Y%m%d%H%M%S').png; notify-send \"Full screeshot has taken\"") },
+	{ ShiftMask,                    XK_Print,  spawn,          SHCMD("maim -s $HOME/Screenshots/selected-screenshot-$(date '+%Y%m%d%H%M%S').png; notify-send \"Selected screenshot has taken\"") },
+	{ ControlMask,                  XK_Print,  spawn,          SHCMD("maim -i $(xdotool getactivewindow) $HOME/Screenshots/window-screenshot-$(date '+%Y%m%d%H%M%S').png; notify-send \"Active window screeshot has taken\"") },
+
     // extra keyboard features
 	{ 0,  XF86XK_AudioMute,                    spawn,          SHCMD("pamixer --toggle-mute; pkill -RTMIN+5 dwmblocks") },
 	{ 0,  XF86XK_AudioLowerVolume,             spawn,          SHCMD("pamixer --decrease 2; pkill -RTMIN+5 dwmblocks") },
