@@ -20,7 +20,7 @@
 
 This build of dwm does not block color emoji in the statusbar, so you must install [libxft-bgra](https://gitlab.freedesktop.org/xorg/lib/libxft), otherwise dwm will crash upon trying to render one.
 
-After install all the dependencies:
+After all the dependencies are installed:
 
 ```
 git clone https://github.com/Daerckdev/dwm
