@@ -3,9 +3,10 @@
 ## Patches
 
 - [actualfullscreen](https://dwm.suckless.org/patches/actualfullscreen/).
+- [alternativetags](https://dwm.suckless.org/patches/alternativetags/).
 - [alwayscenter](https://dwm.suckless.org/patches/alwayscenter/).
 - [attachaside](https://dwm.suckless.org/patches/attachaside/).
-- [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/).
+- [hide\_vacant\_tags](https://dwm.suckless.org/patches/hide_vacant_tags/).
 - [layoutmenu](https://dwm.suckless.org/patches/layoutmenu/).
 - [shiftview](https://lists.suckless.org/dev/1104/7590.html).
 - [statuscmd](https://dwm.suckless.org/patches/statuscmd/).
