@@ -1,3 +1,4 @@
 config.h
 dwm
 *.o
+.ccls-cache/*

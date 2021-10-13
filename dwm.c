@@ -67,7 +67,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeUpLines, SchemeBottomLines }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
@@ -876,8 +876,16 @@ drawbar(Monitor *m)
 
 		w = TEXTW(tags[i]);
 		wdelta = selmon->alttag ? abs(TEXTW(tags[i]) - TEXTW(tagsalt[i])) / 2 : 0;
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
-		drw_text(drw, x, 0, w, bh, wdelta + lrpad / 2, (selmon->alttag ? tagsalt[i] : tags[i]), urg & 1 << i);
+		drw_setscheme(drw, scheme[SchemeNorm]);
+		drw_text(drw, x, 0, w, bh, wdelta + lrpad / 2, (selmon->alttag ? tagsalt[i] : tags[i]), 0);
+        if (occ & 1 << i) {
+            drw_setscheme(drw, scheme[SchemeBottomLines]);
+            drw_rect(drw, x + linetagpad, bh - linetagthickness, w - (linetagpad * 2), linetagthickness, 1, urg & 1 << i);
+        }
+        if (m->tagset[m->seltags] & 1 << i) {
+            drw_setscheme(drw, scheme[SchemeUpLines]);
+            drw_rect(drw, x + linetagpad, bh - linetagthickness - 17, w - (linetagpad * 2), linetagthickness, 1, 0);
+        }
 		x += w;
 	}
 	w = blw = TEXTW(m->ltsymbol);

@@ -24,16 +24,23 @@ static char normfgcolor[]     = "#bbbbbb";
 static char selfgcolor[]      = "#eeeeee";
 static char selbordercolor[]  = "#770000";
 static char selbgcolor[]      = "#005577";
+static const char seltag[]          = "#fcba03";
+static const char windowpresent[]   = "#ff2b1c";
+static const char windowurgpresent[]= "#00ba1f";
 static char *colors[][3]      = {
 	/*                   fg              bg              border   */
 	[SchemeNorm] = { normfgcolor,    normbgcolor,    normbordercolor },
 	[SchemeSel]  = { selfgcolor,     selbgcolor,     selbordercolor  },
+    [SchemeUpLines] = { seltag },
+    [SchemeBottomLines] = { windowpresent, windowurgpresent },
 };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
+static const int linetagpad = 3;
+static const int linetagthickness = 2;
 
 static const Rule rules[] = {
 	/* xprop(1):
