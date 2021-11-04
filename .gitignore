@@ -2,3 +2,5 @@ config.h
 dwm
 *.o
 .ccls-cache/*
+*.rej
+*.orig

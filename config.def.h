@@ -24,9 +24,9 @@ static char normfgcolor[]     = "#bbbbbb";
 static char selfgcolor[]      = "#eeeeee";
 static char selbordercolor[]  = "#770000";
 static char selbgcolor[]      = "#005577";
-static const char seltag[]          = "#fcba03";
-static const char windowpresent[]   = "#ff2b1c";
-static const char windowurgpresent[]= "#00ba1f";
+static char seltag[]          = "#fcba03";
+static char windowpresent[]   = "#ff2b1c";
+static char windowurgpresent[]= "#00ba1f";
 static char *colors[][3]      = {
 	/*                   fg              bg              border   */
 	[SchemeNorm] = { normfgcolor,    normbgcolor,    normbordercolor },
@@ -109,6 +109,10 @@ ResourcePref resources[] = {
         { "gappiv",             INTEGER, &gappiv },
         { "gappoh",             INTEGER, &gappoh },
         { "gappov",             INTEGER, &gappov },
+        { "seltag",             STRING, &seltag },
+        { "windowpresent",      STRING, &windowpresent },
+        { "windowurgpresent",   STRING, &windowurgpresent },
+
 };
 
 #include "shiftview.c"
@@ -165,8 +169,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		        XK_y,	   setlayout,	{.v = &layouts[3]} }, /* dwindle */
 	{ MODKEY,			            XK_u,	   setlayout,	{.v = &layouts[4]} }, /* deck */
 	{ MODKEY|ShiftMask,		        XK_u,	   setlayout,	{.v = &layouts[5]} }, /* monocle */
-	{ MODKEY,			            XK_i,	   setlayout,	{.v = &layouts[6]} }, /* centeredmaster */
-	{ MODKEY|ShiftMask,		        XK_i,	   setlayout,	{.v = &layouts[7]} }, /* centeredfloatingmaster */
+	{ MODKEY,			            XK_m,	   setlayout,	{.v = &layouts[6]} }, /* centeredmaster */
+	{ MODKEY|ShiftMask,		        XK_m,	   setlayout,	{.v = &layouts[7]} }, /* centeredfloatingmaster */
 	{ MODKEY,       		        XK_f,	   setlayout,	{.v = &layouts[8]} }, /* floating */
 	{ MODKEY,                       XK_space,  togglefloating, {0} },
 
