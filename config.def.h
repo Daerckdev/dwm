@@ -48,7 +48,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Gimp",    NULL,     NULL,           4,         0,          0,           0,        -1 },
 	{ BROWCLASS, NULL,     NULL,           2,         0,          0,          -1,        -1 },
 	{ TERMCLASS, NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
@@ -184,6 +184,8 @@ static Key keys[] = {
 	{ 0,                            XK_Print,  spawn,          SHCMD("maim $HOME/Screenshots/full-screenshot-$(date '+%Y%m%d%H%M%S').png; notify-send \"Full screeshot has taken\"") },
 	{ ShiftMask,                    XK_Print,  spawn,          SHCMD("maim -s $HOME/Screenshots/selected-screenshot-$(date '+%Y%m%d%H%M%S').png; notify-send \"Selected screenshot has taken\"") },
 	{ ControlMask,                  XK_Print,  spawn,          SHCMD("maim -i $(xdotool getactivewindow) $HOME/Screenshots/window-screenshot-$(date '+%Y%m%d%H%M%S').png; notify-send \"Active window screeshot has taken\"") },
+
+    { ShiftMask|MODKEY,             XK_h,      spawn,          SHCMD("farge")},
 
     // extra keyboard features
 	{ 0,  XF86XK_AudioMute,                    spawn,          SHCMD("pamixer --toggle-mute; pkill -RTMIN+5 dwmblocks") },
