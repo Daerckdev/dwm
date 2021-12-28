@@ -28,7 +28,7 @@ After all the dependencies are installed:
 ```
 git clone https://github.com/Daerckdev/dwm
 cd dwm
-sudo make clean install
+sudo make install
 ```
 
 Then put "[dwm\_layoutmenu.sh](https://github.com/Daerckdev/dwm/blob/master/dwm_layoutmenu.sh)" in the PATH.
