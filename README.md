@@ -17,19 +17,33 @@
 - [vanitygaps](https://dwm.suckless.org/patches/vanitygaps/).
 - [Xresources](https://dwm.suckless.org/patches/xresources/).
 
-## Installation guide
+## How to install
 
 ### Dependency
 
 This build of dwm does not block color emoji in the statusbar, so you must install [libxft-bgra](https://gitlab.freedesktop.org/xorg/lib/libxft), otherwise dwm will crash upon trying to render one.
 
-After all the dependencies are installed:
+### Installation
+
+Clone the repository:
 
 ```
 git clone https://github.com/Daerckdev/dwm
+```
+
+Compile and install:
+
+```
 cd dwm
 sudo make install
 ```
 
-Then put "[dwm\_layoutmenu.sh](https://github.com/Daerckdev/dwm/blob/master/dwm_layoutmenu.sh)" in the PATH.
+Finally put "[dwm\_layoutmenu.sh](https://github.com/Daerckdev/dwm/blob/master/dwm_layoutmenu.sh)" in the PATH.
+
+If you use a __display manager__ you also have to do:
+
+```
+sudo make xsession
+```
+
 
