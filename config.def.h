@@ -188,7 +188,11 @@ static Key keys[] = {
 	{ 0,  XF86XK_AudioMute,                    spawn,          SHCMD("pamixer --toggle-mute; pkill -RTMIN+5 dwmblocks") },
 	{ 0,  XF86XK_AudioLowerVolume,             spawn,          SHCMD("pamixer --decrease 2; pkill -RTMIN+5 dwmblocks") },
 	{ 0,  XF86XK_AudioRaiseVolume,             spawn,          SHCMD("pamixer --increase 2; pkill -RTMIN+5 dwmblocks") },
-    
+    { 0, XF86XK_AudioPrev,                     spawn,          SHCMD("mpc prev") },
+	{ 0, XF86XK_AudioNext,                     spawn,          SHCMD("mpc next") },
+	{ 0, XF86XK_AudioPause,                    spawn,          SHCMD("mpc pause") },
+	{ 0, XF86XK_AudioPlay,                     spawn,          SHCMD("mpc play") },
+	{ 0, XF86XK_AudioStop,                     spawn,          SHCMD("mpc stop") }
 };
 
 /* button definitions */
