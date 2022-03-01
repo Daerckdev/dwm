@@ -13,6 +13,7 @@
 - [statuscmd](https://dwm.suckless.org/patches/statuscmd/).
 - [sticky](https://dwm.suckless.org/patches/sticky/).
 - [swallow](https://dwm.suckless.org/patches/swallow/).
+- [systray](https://dwm.suckless.org/patches/systray/).
 - [taglines](https://github.com/Daerckdev/dwm/blob/master/patches/dwm-taglines-6.2.diff) - This patch is created by me (inspired by [underlinetags](https://dwm.suckless.org/patches/underlinetags/)).
 - [vanitygaps](https://dwm.suckless.org/patches/vanitygaps/).
 - [Xresources](https://dwm.suckless.org/patches/xresources/).
