@@ -7,7 +7,7 @@
 
 /* appearance */
 static unsigned int borderpx  = 2;        /* border pixel of windows */
-static unsigned int snap      = 10;       /* snap pixel */
+static unsigned int snap      = 5;       /* snap pixel */
 static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 1;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
