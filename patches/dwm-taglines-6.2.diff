@@ -19,8 +19,8 @@ index a2ac963..19c649c 100644
  
  /* tagging */
  static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-+static const int linetagpad = 3;
-+static const int linetagthickness = 2;
++static const unsigned int linetagpad = 3;
++static const unsigned int linetagthickness = 2;
  
  static const Rule rules[] = {
  	/* xprop(1):
@@ -55,7 +55,7 @@ index 5e4d494..8dfa8d2 100644
 +        }
 +        if (m->tagset[m->seltags] & 1 << i) {
 +            drw_setscheme(drw, scheme[SchemeUpLines]);
-+            drw_rect(drw, x + linetagpad, bh - linetagthickness - 17, w - (linetagpad * 2), linetagthickness, 1, 0);
++            drw_rect(drw, x + linetagpad, 0, w - (linetagpad * 2), linetagthickness, 1, 0);
 +        }
  		x += w;
  	}

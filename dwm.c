@@ -990,7 +990,7 @@ drawbar(Monitor *m)
         }
         if (m->tagset[m->seltags] & 1 << i) {
             drw_setscheme(drw, scheme[SchemeUpLines]);
-            drw_rect(drw, x + linetagpad, bh - linetagthickness - 17, w - (linetagpad * 2), linetagthickness, 1, 0);
+            drw_rect(drw, x + linetagpad, 0, w - (linetagpad * 2), linetagthickness, 1, 0);
         }
 		x += w;
 	}

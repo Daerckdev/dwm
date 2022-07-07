@@ -43,8 +43,8 @@ static char *colors[][3]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
-static const int linetagpad = 6;
-static const int linetagthickness = 2;
+static const unsigned int linetagpad = 6;
+static const unsigned int linetagthickness = 2;
 
 static const Rule rules[] = {
 	/* xprop(1):
