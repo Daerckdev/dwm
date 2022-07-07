@@ -141,7 +141,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
 
     // spawn stuff
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("dmenu_run") },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_w,      spawn,          SHCMD(BROWSER) },
     { MODKEY,       		        XK_e,	   spawn,          SHCMD(TERMINAL " -e lf") },
@@ -149,8 +148,10 @@ static Key keys[] = {
     { ControlMask|ShiftMask,        XK_Escape, spawn,          SHCMD(TERMINAL " -e htop") },
 
     // Dmenu stuff
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("dmenu_run") },
 	{ MODKEY,                       XK_comma,  spawn,          SHCMD("dmenutodo") },
 	{ MODKEY,                       XK_period, spawn,          SHCMD("dmenuunicode") },
+	{ MODKEY|ShiftMask,             XK_period, spawn,          SHCMD("dmenupackage") },
 	{ MODKEY,                       XK_minus,  spawn,          SHCMD("passmenu") },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
