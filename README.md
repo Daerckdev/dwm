@@ -9,6 +9,7 @@
 - [hide\_vacant\_tags](https://dwm.suckless.org/patches/hide_vacant_tags/).
 - [layoutmenu](https://dwm.suckless.org/patches/layoutmenu/).
 - [noborder](https://dwm.suckless.org/patches/noborder/).
+- [restartsig](https://dwm.suckless.org/patches/restartsig/)
 - [shiftview](https://lists.suckless.org/dev/1104/7590.html).
 - [statuscmd](https://dwm.suckless.org/patches/statuscmd/).
 - [sticky](https://dwm.suckless.org/patches/sticky/).
