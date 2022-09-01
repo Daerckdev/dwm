@@ -192,9 +192,9 @@ static Key keys[] = {
     { ShiftMask|MODKEY,             XK_h,      spawn,          SHCMD("farge")},
 
     // extra keyboard features
-	{ 0,  XF86XK_AudioMute,                    spawn,          SHCMD("pamixer --toggle-mute; pkill -RTMIN+5 dwmblocks") },
-	{ 0,  XF86XK_AudioLowerVolume,             spawn,          SHCMD("pamixer --decrease 2; pkill -RTMIN+5 dwmblocks") },
-	{ 0,  XF86XK_AudioRaiseVolume,             spawn,          SHCMD("pamixer --increase 2; pkill -RTMIN+5 dwmblocks") },
+	{ 0,  XF86XK_AudioMute,                    spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+5 dwmblocks") },
+	{ 0,  XF86XK_AudioLowerVolume,             spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; pkill -RTMIN+5 dwmblocks") },
+	{ 0,  XF86XK_AudioRaiseVolume,             spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; pkill -RTMIN+5 dwmblocks") },
     { 0, XF86XK_AudioPrev,                     spawn,          SHCMD("mpc prev") },
 	{ 0, XF86XK_AudioNext,                     spawn,          SHCMD("mpc next") },
 	{ 0, XF86XK_AudioPause,                    spawn,          SHCMD("mpc pause") },
