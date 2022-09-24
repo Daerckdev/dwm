@@ -41,19 +41,15 @@ static char *colors[][3]      = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tagsalt[] = { "", "", "", "", "", "", "", "", "" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 static const unsigned int linetagpad = 6;
 static const unsigned int linetagthickness = 2;
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           4,         0,          0,           0,        -1 },
-	{ BROWCLASS, NULL,     NULL,           2,         0,          0,          -1,        -1 },
+	{ "Gimp",    NULL,     NULL,           1 << 3,    0,          0,           0,        -1 },
+	{ BROWCLASS, NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
 	{ TERMCLASS, NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -98,15 +94,15 @@ static const char *layoutmenu_cmd = "dwm_layoutmenu.sh";
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "normbgcolor",        STRING,  &normbgcolor },
-		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "normfgcolor",        STRING,  &normfgcolor },
-		{ "selbgcolor",         STRING,  &selbgcolor },
-		{ "selbordercolor",     STRING,  &selbordercolor },
-		{ "selfgcolor",         STRING,  &selfgcolor },
-		{ "borderpx",          	INTEGER, &borderpx },
-		{ "snap",          		INTEGER, &snap },
-		{ "topbar",          	INTEGER, &topbar },
+        { "normbgcolor",        STRING,  &normbgcolor },
+        { "normbordercolor",    STRING,  &normbordercolor },
+        { "normfgcolor",        STRING,  &normfgcolor },
+        { "selbgcolor",         STRING,  &selbgcolor },
+        { "selbordercolor",     STRING,  &selbordercolor },
+        { "selfgcolor",         STRING,  &selfgcolor },
+        { "borderpx",           INTEGER, &borderpx },
+        { "snap",               INTEGER, &snap },
+        { "topbar",             INTEGER, &topbar },
         { "gappih",             INTEGER, &gappih },
         { "gappiv",             INTEGER, &gappiv },
         { "gappoh",             INTEGER, &gappoh },
@@ -192,9 +188,9 @@ static Key keys[] = {
     { ShiftMask|MODKEY,             XK_h,      spawn,          SHCMD("farge")},
 
     // extra keyboard features
-	{ 0,  XF86XK_AudioMute,                    spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+5 dwmblocks") },
-	{ 0,  XF86XK_AudioLowerVolume,             spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; pkill -RTMIN+5 dwmblocks") },
-	{ 0,  XF86XK_AudioRaiseVolume,             spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; pkill -RTMIN+5 dwmblocks") },
+	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+5 dwmblocks") },
+	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; pkill -RTMIN+5 dwmblocks") },
+	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; pkill -RTMIN+5 dwmblocks") },
     { 0, XF86XK_AudioPrev,                     spawn,          SHCMD("mpc prev") },
 	{ 0, XF86XK_AudioNext,                     spawn,          SHCMD("mpc next") },
 	{ 0, XF86XK_AudioPause,                    spawn,          SHCMD("mpc pause") },
