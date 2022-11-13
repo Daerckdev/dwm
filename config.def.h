@@ -2,8 +2,7 @@
 
 #define TERMINAL "alacritty"
 #define TERMCLASS "Alacritty"
-#define BROWSER "brave"
-#define BROWCLASS "Brave"
+#define BROWSER "firefox"
 
 /* appearance */
 static unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -49,7 +48,7 @@ static const unsigned int linetagthickness = 2;
 static const Rule rules[] = {
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",    NULL,     NULL,           1 << 3,    0,          0,           0,        -1 },
-	{ BROWCLASS, NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
+	{ BROWSER,   NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
 	{ TERMCLASS, NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
