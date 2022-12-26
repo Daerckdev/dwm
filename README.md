@@ -40,8 +40,6 @@ cd dwm
 sudo make install
 ```
 
-Finally put "[dwm\_layoutmenu.sh](https://github.com/Daerckdev/dwm/blob/master/dwm_layoutmenu.sh)" in the PATH.
-
 If you use a __display manager__ you also have to do:
 
 ```
