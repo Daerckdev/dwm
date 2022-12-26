@@ -87,7 +87,6 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *termcmd[]  = { TERMINAL, NULL };
-static const char *layoutmenu_cmd = "dwm_layoutmenu.sh";
 
 /*
  * Xresources preferences to load at startup
@@ -202,16 +201,7 @@ static const Key keys[] = {
 static const Button buttons[] = {
 	/* click                        event mask      button          function        argument */
 	// { ClkLtSymbol,                  0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,                  0,              Button3,        layoutmenu,     {0} },
 	{ ClkWinTitle,                  0,              Button2,        zoom,           {0} },
-
-	{ ClkStatusText,                0,              Button1,        sigdwmblocks,   {.i = 1} },
-	{ ClkStatusText,                0,              Button2,        sigdwmblocks,   {.i = 2} },
-	{ ClkStatusText,                0,              Button3,        sigdwmblocks,   {.i = 3} },
-	{ ClkStatusText,                ShiftMask,      Button1,        sigdwmblocks,   {.i = 4} },
-	{ ClkStatusText,                ShiftMask,      Button2,        sigdwmblocks,   {.i = 5} },
-	{ ClkStatusText,                ShiftMask,      Button3,        sigdwmblocks,   {.i = 6} },
-
 	{ ClkClientWin,                 MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,                 MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,                 MODKEY,         Button3,        resizemouse,    {0} },
@@ -219,4 +209,11 @@ static const Button buttons[] = {
 	{ ClkTagBar,                    0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,                    MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,                    MODKEY,         Button3,        toggletag,      {0} },
+
+	{ ClkStatusText,                0,              Button1,        sigdwmblocks,   {.i = 1} },
+	{ ClkStatusText,                0,              Button2,        sigdwmblocks,   {.i = 2} },
+	{ ClkStatusText,                0,              Button3,        sigdwmblocks,   {.i = 3} },
+	{ ClkStatusText,                ShiftMask,      Button1,        sigdwmblocks,   {.i = 4} },
+	{ ClkStatusText,                ShiftMask,      Button2,        sigdwmblocks,   {.i = 5} },
+	{ ClkStatusText,                ShiftMask,      Button3,        sigdwmblocks,   {.i = 6} },
 };
