@@ -1,5 +1,5 @@
 # dwm version
-VERSION = 6.3-Daerck
+VERSION = 6.4-Daerck
 
 # Customize below to fit your system
 
