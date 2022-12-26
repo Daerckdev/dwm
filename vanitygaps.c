@@ -1,11 +1,7 @@
 /* Key binding functions */
 static void bstack(Monitor *m);
 static void centeredmaster(Monitor *m);
-static void centeredfloatingmaster(Monitor *m);
-static void deck(Monitor *m);
 static void dwindle(Monitor *m);
-static void fibonacci(Monitor *m, int s);
-static void spiral(Monitor *m);
 static void tile(Monitor *m);
 /* Internals */
 static void getgaps(Monitor *m, int *oh, int *ov, int *ih, int *iv, unsigned int *nc);
@@ -201,110 +197,12 @@ centeredmaster(Monitor *m)
 	}
 }
 
-void
-centeredfloatingmaster(Monitor *m)
-{
-	unsigned int i, n;
-	float mfacts, sfacts;
-	float mivf = 1.0; // master inner vertical gap factor
-	int oh, ov, ih, iv, mrest, srest;
-	int mx = 0, my = 0, mh = 0, mw = 0;
-	int sx = 0, sy = 0, sh = 0, sw = 0;
-	Client *c;
-
-	getgaps(m, &oh, &ov, &ih, &iv, &n);
-	if (n == 0)
-		return;
-
-	sx = mx = m->wx + ov;
-	sy = my = m->wy + oh;
-	sh = mh = m->wh - 2*oh;
-	mw = m->ww - 2*ov - iv*(n - 1);
-	sw = m->ww - 2*ov - iv*(n - m->nmaster - 1);
-
-	if (m->nmaster && n > m->nmaster) {
-		mivf = 0.8;
-		/* go mfact box in the center if more than nmaster clients */
-		if (m->ww > m->wh) {
-			mw = m->ww * m->mfact - iv*mivf*(MIN(n, m->nmaster) - 1);
-			mh = m->wh * 0.9;
-		} else {
-			mw = m->ww * 0.9 - iv*mivf*(MIN(n, m->nmaster) - 1);
-			mh = m->wh * m->mfact;
-		}
-		mx = m->wx + (m->ww - mw) / 2;
-		my = m->wy + (m->wh - mh - 2*oh) / 2;
-
-		sx = m->wx + ov;
-		sy = m->wy + oh;
-		sh = m->wh - 2*oh;
-	}
-
-	getfacts(m, mw, sw, &mfacts, &sfacts, &mrest, &srest);
-
-	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
-		if (i < m->nmaster) {
-			/* nmaster clients are stacked horizontally, in the center of the screen */
-			resize(c, mx, my, (mw / mfacts) + (i < mrest ? 1 : 0) - (2*c->bw), mh - (2*c->bw), 0);
-			mx += WIDTH(c) + iv*mivf;
-		} else {
-			/* stack clients are stacked horizontally */
-			resize(c, sx, sy, (sw / sfacts) + ((i - m->nmaster) < srest ? 1 : 0) - (2*c->bw), sh - (2*c->bw), 0);
-			sx += WIDTH(c) + iv;
-		}
-}
-
-/*
- * Deck layout + gaps
- * https://dwm.suckless.org/patches/deck/
- */
-void
-deck(Monitor *m)
-{
-	unsigned int i, n;
-	int oh, ov, ih, iv;
-	int mx = 0, my = 0, mh = 0, mw = 0;
-	int sx = 0, sy = 0, sh = 0, sw = 0;
-	float mfacts, sfacts;
-	int mrest, srest;
-	Client *c;
-
-	getgaps(m, &oh, &ov, &ih, &iv, &n);
-	if (n == 0)
-		return;
-
-	sx = mx = m->wx + ov;
-	sy = my = m->wy + oh;
-	sh = mh = m->wh - 2*oh - ih * (MIN(n, m->nmaster) - 1);
-	sw = mw = m->ww - 2*ov;
-
-	if (m->nmaster && n > m->nmaster) {
-		sw = (mw - iv) * (1 - m->mfact);
-		mw = mw - iv - sw;
-		sx = mx + mw + iv;
-		sh = m->wh - 2*oh;
-	}
-
-	getfacts(m, mh, sh, &mfacts, &sfacts, &mrest, &srest);
-
-	if (n - m->nmaster > 0) /* override layout symbol */
-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "D %d", n - m->nmaster);
-
-	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
-		if (i < m->nmaster) {
-			resize(c, mx, my, mw - (2*c->bw), (mh / mfacts) + (i < mrest ? 1 : 0) - (2*c->bw), 0);
-			my += HEIGHT(c) + ih;
-		} else {
-			resize(c, sx, sy, sw - (2*c->bw), sh - (2*c->bw), 0);
-		}
-}
-
 /*
  * Fibonacci layout + gaps
  * https://dwm.suckless.org/patches/fibonacci/
  */
 void
-fibonacci(Monitor *m, int s)
+dwindle(Monitor *m)
 {
 	unsigned int i, n;
 	int nx, ny, nw, nh;
@@ -337,23 +235,12 @@ fibonacci(Monitor *m, int s)
 					wrest = nw - 2*nv - iv;
 					nw = nv;
 				}
-
-				if ((i % 4) == 2 && !s)
-					nx += nw + iv;
-				else if ((i % 4) == 3 && !s)
-					ny += nh + ih;
 			}
 
-			if ((i % 4) == 0) {
-				if (s) {
-					ny += nh + ih;
-					nh += hrest;
-				}
-				else {
-					nh -= hrest;
-					ny -= nh + ih;
-				}
-			}
+            if ((i % 4) == 0) {
+                ny += nh + ih;
+                nh += hrest;
+            }
 			else if ((i % 4) == 1) {
 				nx += nw + iv;
 				nw += wrest;
@@ -365,14 +252,8 @@ fibonacci(Monitor *m, int s)
 					nw += wrest;
 			}
 			else if ((i % 4) == 3) {
-				if (s) {
-					nx += nw + iv;
-					nw -= wrest;
-				} else {
-					nw -= wrest;
-					nx -= nw + iv;
-					nh += hrest;
-				}
+                nx += nw + iv;
+                nw -= wrest;
 			}
 			if (i == 0)	{
 				if (n != 1) {
@@ -388,18 +269,6 @@ fibonacci(Monitor *m, int s)
 
 		resize(c, nx, ny, nw - (2*c->bw), nh - (2*c->bw), False);
 	}
-}
-
-void
-dwindle(Monitor *m)
-{
-	fibonacci(m, 1);
-}
-
-void
-spiral(Monitor *m)
-{
-	fibonacci(m, 0);
 }
 
 /*
