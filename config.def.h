@@ -125,7 +125,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_b,      shiftview,      { .i = -1} },
+	{ MODKEY,                       XK_p,      shiftview,      { .i = -1} },
 	{ MODKEY,                       XK_n,      shiftview,      { .i = +1} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -140,7 +140,7 @@ static const Key keys[] = {
     { ControlMask|ShiftMask,        XK_Escape, spawn,          SHCMD(TERMINAL " -e htop") },
 
     // Dmenu stuff
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("dmenu_run") },
+	{ MODKEY,                       XK_x,      spawn,          SHCMD("dmenu_run") },
 	{ MODKEY,                       XK_comma,  spawn,          SHCMD("dmenutodo") },
 	{ MODKEY,                       XK_period, spawn,          SHCMD("dmenuunicode") },
 	{ MODKEY|ShiftMask,             XK_period, spawn,          SHCMD("dmenupackage") },
@@ -167,10 +167,10 @@ static const Key keys[] = {
     { MODKEY,                       XK_space,  togglefloating, {0} },
 
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_x,      focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_z,      focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_x,      tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_z,      tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_Left,      focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_Right,      focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_Left,      tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_Right,      tagmon,         {.i = +1 } },
 
     // Screenshot (require maim)
 	{ 0,                            XK_Print,  spawn,          SHCMD("maim $HOME/Screenshots/full-screenshot-$(date '+%Y%m%d%H%M%S').png; notify-send \"Full screeshot has taken\"") },
