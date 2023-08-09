@@ -266,7 +266,6 @@ static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
-static void sigchld(int unused);
 static void sigdwmblocks(const Arg *arg);
 static void sighup(int unused);
 static void sigterm(int unused);
@@ -1946,12 +1945,19 @@ setup(void)
 	int i;
 	XSetWindowAttributes wa;
 	Atom utf8string;
+    struct sigaction sa;
 
-	/* clean up any zombies immediately */
-	sigchld(0);
+    /* do not transform children into zombies when they terminate */
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = SA_NOCLDSTOP | SA_NOCLDWAIT | SA_RESTART;
+    sa.sa_handler = SIG_IGN;
+    sigaction(SIGCHLD, &sa, NULL);
 
-	signal(SIGHUP, sighup);
-	signal(SIGTERM, sigterm);
+    /* clean up any zombies (inherited from .xinitrc etc) immediately */
+    while (waitpid(-1, NULL, WNOHANG) > 0);
+
+    signal(SIGHUP, sighup);
+    signal(SIGTERM, sigterm);
 
 	/* init screen */
 	screen = DefaultScreen(dpy);
@@ -2055,14 +2061,6 @@ showhide(Client *c)
 }
 
 void
-sigchld(int unused)
-{
-	if (signal(SIGCHLD, sigchld) == SIG_ERR)
-		die("can't install SIGCHLD handler:");
-	while (0 < waitpid(-1, NULL, WNOHANG));
-}
-
-void
 sigdwmblocks(const Arg *arg)
 {
 	union sigval sv;
@@ -2096,10 +2094,18 @@ sigterm(int unused)
 void
 spawn(const Arg *arg)
 {
+    struct sigaction sa;
+
 	if (fork() == 0) {
 		if (dpy)
 			close(ConnectionNumber(dpy));
 		setsid();
+
+        sigemptyset(&sa.sa_mask);
+        sa.sa_flags = 0;
+        sa.sa_handler = SIG_DFL;
+        sigaction(SIGCHLD, &sa, NULL);
+
 		execvp(((char **)arg->v)[0], (char **)arg->v);
 		fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[0]);
 		perror(" failed");
